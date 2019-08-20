@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect(route('question.index'));
 });
+
+Route::resource('question', 'Question')->only(['index', 'create', 'store', 'show']);
+
+Route::post('question/{question_id}/answer', 'Answer@store')->name('answer.store');
